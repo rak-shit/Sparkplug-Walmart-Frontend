@@ -28,41 +28,14 @@ const styles = theme => ({
     } 
 });
 
-
 class Charts extends Component {
     state = {
         filter: null,
         hovered: null,
         highlighting: false,
-        data_raw: [],
-        data_outliers: [],
-        data_median: []
-    };
+     }
+   
 
-    componentDidMount() {
-        axios.get('http://localhost:5000/').then((response) => {
-            console.log(response.data.raw_data)
-            const data_raw = response.data.raw_data.map((tuple) => ({
-                x: tuple[0],
-                y: tuple[1]
-            }))
-            console.log(response.data.outliers)
-            const data_outliers = response.data.outliers.map((tuple) => ({
-                x: tuple[0],
-                y: tuple[1]
-            }))
-            console.log(response.data.threshold_all[0][0])
-            const data_median = response.data.threshold_all.map((tuple, i) => ({
-                x: tuple[0],
-                y: tuple[1]
-            }))
-            this.setState({
-                data_raw: data_raw,
-                data_outliers: data_outliers,
-                data_median: data_median
-            })
-        });
-    }
 
     render() {
         const { classes } = this.props
@@ -78,8 +51,8 @@ class Charts extends Component {
         };
 
         return (
-            <>
-            <div className="root">
+            <div>
+                {this.props.submit ? <><div className="root">
                 <Card className={classes.block}>
                 <XYPlot width={600} height={300}>
                     <VerticalGridLines />
@@ -109,7 +82,7 @@ class Charts extends Component {
                         getColor={d => (highlightPoint(d) ? '#EF5D28' : '#12939A')}
                         onValueMouseOver={d => this.setState({hovered: d})}
                         onValueMouseOut={d => this.setState({hovered: false})}
-                        data={this.state.data_outliers}
+                        data={this.props.data_outliers}
                         size={2}
                     />
                     {hovered && <Hint value={hovered} />}
@@ -121,7 +94,7 @@ class Charts extends Component {
                     <HorizontalGridLines />
                     <XAxis />
                     <YAxis />
-                    <MarkSeries data={this.state.data_raw} 
+                    <MarkSeries data={this.props.data_raw} 
                         className="mark-series-example"
                         strokeWidth={2}
                         opacity="0.8"
@@ -143,7 +116,7 @@ class Charts extends Component {
                     <HorizontalGridLines />
                     <XAxis />
                     <YAxis />
-                    <VerticalBarSeries data={this.state.data_median} 
+                    <VerticalBarSeries data={this.props.data_median} 
                         className="mark-series-example"
                         strokeWidth={2}
                         opacity="0.8"
@@ -156,8 +129,8 @@ class Charts extends Component {
                     />
                 </XYPlot>
                 </Card>
+            </div></> : null}
             </div>
-          </>
         )
     }
 }

@@ -4,7 +4,6 @@ import {
 } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import PropTypes from 'prop-types';
 import SendIcon from '@material-ui/icons/Send';
 

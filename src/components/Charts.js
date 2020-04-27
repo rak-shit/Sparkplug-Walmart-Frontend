@@ -16,26 +16,7 @@ import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-import {generateSeededRandom} from '../utils/showcase-utils';
-
 const axios = require('axios');
-const seededRandom = generateSeededRandom(3);
-
-// randomly generated data
-const data = [
-    {x:1, y: 5},
-    {x:2, y: 6},
-    {x:3, y: 3},
-    {x:4, y: 6},
-    {x:5, y: 10},
-    {x:6, y: 2},
-    {x:7, y: 1},
-    {x:8, y: 5},
-    {x:9, y: 4},
-    {x:10, y: 2},
-    {x:11, y: 12},
-    {x:12, y: 1},
-]
 
 const styles = theme => ({
     block: {

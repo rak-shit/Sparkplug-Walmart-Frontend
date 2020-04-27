@@ -4,5 +4,8 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-
+.rv-xy-plot__grid-lines__line {
+    stroke: rgb(199, 189, 189);
+    stroke-width: 1;
+  }
 

@@ -18,7 +18,7 @@ export class App extends Component {
         submit: false,
         data_raw: [],
         data_outliers: [],
-        data_median: [],
+        data_median: []
     }
   }
 

@@ -21,17 +21,18 @@ const styles = theme => ({
       fontWeight: "700",
       fontSize: "150%",
       fontFamily: "Rubik, sans-serif",
-      marginRight: "950px"
     },
     navbar: {
         boxShadow: "5px 5px 8px #888888",
+        width: "100%"
     },
     menuButton: {
         marginRight: theme.spacing(2),
     },
     button: {
         fontFamily: "Rubik, sans-serif",
-        fontSize: "100%"
+        fontSize: "100%",
+        overflowX: "hidden"
     }
 });
 
@@ -61,11 +62,11 @@ class Dashboard extends Component {
         return (
             <div className={classes.root}>
                 <AppBar position="static" className={classes.navbar} >
-                    <Toolbar>
-                        <IconButton>
-                            <img src={thunder} height="50" width="50" />
-                        </IconButton>
+                    <Toolbar variant="dense">
                         <Typography variant="h6" className={classes.title}>
+                            <IconButton>
+                                <img src={thunder} height="50" width="50" />
+                            </IconButton>
                             Sparkplug-Walmart
                         </Typography>
                         <Button className={classes.button} color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}><b>References</b></Button>

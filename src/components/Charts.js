@@ -15,6 +15,8 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Lottie from 'react-lottie'
 import animationData from '../lotties/18914-sand-clock-loader-animation.json'
+import { Line, Circle } from 'rc-progress';
+
 
 const axios = require('axios');
 
@@ -35,7 +37,8 @@ class Charts extends Component {
         this.state = {
             size: 2,
             color: '#FF6347',
-            value: false
+            value: false,
+            value2: false
         }
     }
     render() {
@@ -43,6 +46,9 @@ class Charts extends Component {
         const defaultOptions = {
             animationData: animationData
         }
+        const data = [
+            { x: this.props.item, y: this.props.avg_rate_change }
+        ]
         return (
             <div>
                 {this.props.loader ? 
@@ -66,8 +72,8 @@ class Charts extends Component {
                                     onMouseLeave={() => this.setState({value: false})}>
                                     <VerticalGridLines color="#808080" />
                                     <HorizontalGridLines />
-                                    <XAxis/>
-                                    <YAxis/>
+                                    <XAxis title="Retailer" />
+                                    <YAxis title="Price" />
                                     <MarkSeries
                                         className="mark-series-example"
                                         strokeWidth={2}
@@ -96,8 +102,8 @@ class Charts extends Component {
                                 <XYPlot height={300} width={600}>
                                     <VerticalGridLines />
                                     <HorizontalGridLines />
-                                    <XAxis />
-                                    <YAxis />
+                                    <XAxis title="Retailer" />
+                                    <YAxis title="Raw data" />
                                     <MarkSeries data={this.props.data_raw} 
                                         className="mark-series-example"
                                         strokeWidth={2}
@@ -111,11 +117,11 @@ class Charts extends Component {
                         </div>
                         <div className="root">
                             <Card className={classes.block}>
-                                <XYPlot height={400} width={700} xType="ordinal">
+                                <XYPlot height={300} width={600} xType="ordinal">
                                     <VerticalGridLines />
                                     <HorizontalGridLines />
-                                    <XAxis />
-                                    <YAxis />
+                                    <XAxis title="Essential Items" />
+                                    <YAxis title="Mediam price" />
                                     <VerticalBarSeries data={this.props.data_median} 
                                         className="mark-series-example"
                                         strokeWidth={2}
@@ -123,6 +129,35 @@ class Charts extends Component {
                                         sizeRange={[5, 20]}
                                         colorType="literal"
                                     />
+                                </XYPlot>
+                            </Card>
+                            <Card className={classes.block}>
+                                <XYPlot height={300} width={600} xType="ordinal"
+                                    onMouseLeave={() => this.setState({value2: false})}>
+                                    <VerticalGridLines />
+                                    <HorizontalGridLines />
+                                    <XAxis title="Product" />
+                                    <YAxis title="Rate of change in price" />
+                                    <VerticalBarSeries data={data} 
+                                        className="mark-series-example"
+                                        strokeWidth={2}
+                                        barWidth={0.1}
+                                        opacity="0.8"
+                                        sizeRange={[5, 20]}
+                                        colorType="linear"
+                                        color={this.state.color}
+                                        onNearestXY={(value2) => this.setState({value2})}
+                                        animation={true}
+                                    />
+                                    {this.state.value2 ? <Hint value={this.state.value2} style={{color: 'white'}}>
+                                                            <div className="details">
+                                                                <h3 className="text">Rate of change in price</h3>
+                                                                <p className="text">{this.state.value2.y}%</p>
+                                                            </div>
+                                                        </Hint> 
+                                                    : 
+                                                null
+                                            }
                                 </XYPlot>
                             </Card>
                         </div>

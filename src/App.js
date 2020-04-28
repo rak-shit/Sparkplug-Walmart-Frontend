@@ -20,7 +20,8 @@ export class App extends Component {
         data_outliers: [],
         data_median: [],
         loader: false,
-        outliers: new Array()
+        outliers: new Array(),
+        avg_rate_change: 0
     }
   }
 
@@ -53,13 +54,15 @@ export class App extends Component {
       response.data.outliers.map((tuple) => {
         outliers[tuple[0]] = tuple[2]
       })
+      const avg_rate_change = response.data.average_rate_change.toFixed(2)*100
       this.setState({
         data_raw: data_raw,
         data_outliers: data_outliers,
         data_median: data_median,
         submit: true,
         loader: false,
-        outliers: outliers
+        outliers: outliers,
+        avg_rate_change: avg_rate_change
       })
     });
   }
@@ -76,7 +79,7 @@ export class App extends Component {
         <div>
           <Charts data_raw={this.state.data_raw} data_outliers={this.state.data_outliers} 
             data_median={this.state.data_median} submit={this.state.submit} loader={this.state.loader} 
-            outliers={this.state.outliers} />
+            outliers={this.state.outliers} avg_rate_change={this.state.avg_rate_change} item={this.state.item} />
         </div>
       </div>
     )

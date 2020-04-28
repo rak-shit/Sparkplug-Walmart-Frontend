@@ -1,11 +1,32 @@
 .root {
     align-items: center;
     width: 100%;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .rv-xy-plot__grid-lines__line {
-    stroke: rgb(199, 189, 189);
+    stroke: rgb(228, 219, 219);
     stroke-width: 1;
-  }
+}
+
+.fake {
+    height: 150px;
+}
+
+.lottie {
+    align-items: center;
+}
+
+.lottie-file {
+    display: inline-block;
+    margin: auto;
+}
+
+.details {
+    border-radius: 10px;
+    padding: 8px;
+    background: rgb(37, 74, 177);
+}
+
+
 

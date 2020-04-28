@@ -6,15 +6,15 @@ import {
     VerticalGridLines,
     HorizontalGridLines,
     MarkSeries,
-    LineSeries,
-    Highlight,
-    Hint,
-    VerticalBarSeries
+    VerticalBarSeries,
+    Hint
   } from 'react-vis';
 import '../styles/chart.css'
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import Lottie from 'react-lottie'
+import animationData from '../lotties/18914-sand-clock-loader-animation.json'
 
 const axios = require('axios');
 
@@ -29,19 +29,45 @@ const styles = theme => ({
 });
 
 class Charts extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            size: 2,
+            color: '#FF6347',
+            value: false
+        }
+    }
     render() {
         const { classes } = this.props
+        const defaultOptions = {
+            animationData: animationData
+        }
         return (
             <div>
+                {this.props.loader ? 
+                    <>
+                        <div className="fake" ></div>
+                        <div className="lottie">
+                            <Lottie options={defaultOptions}
+                                height={100}
+                                width={100}
+                                className="lottie-file"
+                            />
+                        </div>    
+                    </>
+                    : null
+                }
                 {this.props.submit ? 
                     <>
                         <div className="root">
                             <Card className={classes.block}>
-                                <XYPlot width={600} height={300}>
+                                <XYPlot width={600} height={300} 
+                                    onMouseLeave={() => this.setState({value: false})}>
                                     <VerticalGridLines color="#808080" />
                                     <HorizontalGridLines />
-                                    <XAxis />
-                                    <YAxis />
+                                    <XAxis/>
+                                    <YAxis/>
                                     <MarkSeries
                                         className="mark-series-example"
                                         strokeWidth={2}
@@ -49,9 +75,21 @@ class Charts extends Component {
                                         sizeRange={[5, 15]}
                                         colorType="linear"
                                         data={this.props.data_outliers}
-                                        size={2}
-                                        color="#FF6347"
+                                        size={this.state.size}
+                                        color={this.state.color}
+                                        onNearestXY={(value) => this.setState({value})}
+                                        animation={true}
                                     />
+                                    {this.state.value ? <Hint value={this.state.value} style={{color: 'white'}}>
+                                                            <div className="details">
+                                                                <h3 className="text">Price Gouging!</h3>
+                                                                <p className="text">Retailer: {this.props.outliers[this.state.value.x]}</p>
+                                                                <p className="text">Price: {this.state.value.y}</p>
+                                                            </div>
+                                                        </Hint> 
+                                                    : 
+                                                null
+                                            }
                                 </XYPlot>
                              </Card>
                             <Card className={classes.block}>
@@ -71,7 +109,7 @@ class Charts extends Component {
                                 </XYPlot>
                             </Card>
                         </div>
-                        <div className={classes.root}>
+                        <div className="root">
                             <Card className={classes.block}>
                                 <XYPlot height={400} width={700} xType="ordinal">
                                     <VerticalGridLines />

@@ -25,6 +25,7 @@ const styles = theme => ({
         fontFamily: "courier",
         fontWeight: "600",
         fontSize: "110%",
+        boxShadow: "5px 5px 8px #888888",
     },
 });
 

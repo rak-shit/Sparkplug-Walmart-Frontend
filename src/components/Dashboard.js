@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 const styles = theme => ({
     root: {
       flexGrow: 1,
-      boxShadow: "5px 5px 8px #888888",
     },
     title: {
       flexGrow: 1,
@@ -16,6 +15,9 @@ const styles = theme => ({
       fontFamily: "courier",
       fontSize: "150%",
     },
+    navbar: {
+        boxShadow: "5px 5px 8px #888888",
+    }
 });
 
 class Dashboard extends Component {
@@ -23,7 +25,7 @@ class Dashboard extends Component {
         const { classes } = this.props
         return (
             <div className={classes.root}>
-                <AppBar position="static">
+                <AppBar position="static" className={classes.navbar} >
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
                             Sparkplug-Walmart

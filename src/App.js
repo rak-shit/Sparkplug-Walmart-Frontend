@@ -18,7 +18,9 @@ export class App extends Component {
         submit: false,
         data_raw: [],
         data_outliers: [],
-        data_median: []
+        data_median: [],
+        loader: false,
+        outliers: new Array()
     }
   }
 
@@ -30,6 +32,10 @@ export class App extends Component {
 
   handleClick = (event) => {
     event.preventDefault()
+    this.setState({ 
+      loader: true,
+      submit: false 
+    })
     axios.get(`http://localhost:5000/monitor/${this.state.item}/${this.state.year}/${this.state.country}`).then((response) => {
       const data_raw = response.data.raw_data.map((tuple) => ({
         x: tuple[0],
@@ -43,11 +49,17 @@ export class App extends Component {
         x: tuple[0],
         y: tuple[1]
       }))
+      var outliers = new Array()
+      response.data.outliers.map((tuple) => {
+        outliers[tuple[0]] = tuple[2]
+      })
       this.setState({
         data_raw: data_raw,
         data_outliers: data_outliers,
         data_median: data_median,
-        submit: true
+        submit: true,
+        loader: false,
+        outliers: outliers
       })
     });
   }
@@ -63,7 +75,8 @@ export class App extends Component {
         </div>
         <div>
           <Charts data_raw={this.state.data_raw} data_outliers={this.state.data_outliers} 
-            data_median={this.state.data_median} submit={this.state.submit} />
+            data_median={this.state.data_median} submit={this.state.submit} loader={this.state.loader} 
+            outliers={this.state.outliers} />
         </div>
       </div>
     )

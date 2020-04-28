@@ -1,7 +1,7 @@
 .root {
     align-items: center;
     width: 100%;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Rubik', sans-serif;
 }
 
 .rv-xy-plot__grid-lines__line {

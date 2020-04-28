@@ -22,7 +22,7 @@ const styles = theme => ({
     block: {
         display: "inline-block",
         zoom: 1,
-        padding: "40px",
+        padding: "10px",
         margin: "10px",
         boxShadow: "5px 5px 8px #888888",
     } 

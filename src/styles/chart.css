@@ -10,7 +10,7 @@
 }
 
 .fake {
-    height: 150px;
+    height: 120px;
 }
 
 .lottie {
@@ -25,7 +25,8 @@
 .details {
     border-radius: 10px;
     padding: 8px;
-    background: rgb(37, 74, 177);
+    background: #f0f0f0;
+    color: #5c5b59;
 }
 
 

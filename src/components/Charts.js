@@ -35,7 +35,7 @@ class Charts extends Component {
         super(props)
     
         this.state = {
-            size: 2,
+            size: 4,
             color: '#FF6347',
             value: false,
             value2: false

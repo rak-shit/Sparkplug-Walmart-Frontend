@@ -10,7 +10,6 @@ import thunder from '../svgs/observation.png'
 import Lottie from 'react-lottie'
 import animationData from '../lotties/18143-discord-nearby-animation.json';
 
-const axios = require('axios')
 
 const styles = theme => ({
     root: {

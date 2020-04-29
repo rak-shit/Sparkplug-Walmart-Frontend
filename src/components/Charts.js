@@ -15,7 +15,6 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Lottie from 'react-lottie'
 import animationData from '../lotties/18914-sand-clock-loader-animation.json'
-import { Line, Circle } from 'rc-progress';
 
 
 const axios = require('axios');
@@ -89,7 +88,7 @@ class Charts extends Component {
                                     {this.state.value ? <Hint value={this.state.value} style={{color: 'white'}}>
                                                             <div className="details">
                                                                 <h3 className="text">Price Gouging!</h3>
-                                                                <p className="text">Retailer: {this.props.outliers[this.state.value.x]}</p>
+                                                                <p className="text">Retailer ID: {this.props.outliers[this.state.value.x]}</p>
                                                                 <p className="text">Price: {this.state.value.y}</p>
                                                             </div>
                                                         </Hint> 
@@ -127,6 +126,7 @@ class Charts extends Component {
                                     <VerticalBarSeries data={this.props.data_median} 
                                         className="mark-series-example"
                                         strokeWidth={2}
+                                        barWidth={0.1}
                                         opacity="0.8"
                                         sizeRange={[5, 20]}
                                         colorType="literal"

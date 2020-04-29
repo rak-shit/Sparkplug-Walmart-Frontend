@@ -97,6 +97,7 @@ class Charts extends Component {
                                                 null
                                             }
                                 </XYPlot>
+                                <span><p>The price goughing defaulters</p></span>
                              </Card>
                             <Card className={classes.block}>
                                 <XYPlot height={300} width={600}>
@@ -113,6 +114,7 @@ class Charts extends Component {
                                         size={2}
                                     />
                                 </XYPlot>
+                                <span><p>Pricing trends in the past year</p></span>
                             </Card>
                         </div>
                         <div className="root">
@@ -120,7 +122,7 @@ class Charts extends Component {
                                 <XYPlot height={300} width={600} xType="ordinal">
                                     <VerticalGridLines />
                                     <HorizontalGridLines />
-                                    <XAxis title="Essential Items" />
+                                    <XAxis />
                                     <YAxis title="Mediam price" />
                                     <VerticalBarSeries data={this.props.data_median} 
                                         className="mark-series-example"
@@ -130,6 +132,7 @@ class Charts extends Component {
                                         colorType="literal"
                                     />
                                 </XYPlot>
+                                <span><p>Median prices of essential items</p></span>
                             </Card>
                             <Card className={classes.block}>
                                 <XYPlot height={300} width={600} xType="ordinal"
@@ -159,6 +162,7 @@ class Charts extends Component {
                                                 null
                                             }
                                 </XYPlot>
+                                <span><p>Average increase in price</p></span>
                             </Card>
                         </div>
                     </> 

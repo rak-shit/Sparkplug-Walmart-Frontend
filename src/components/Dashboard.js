@@ -21,6 +21,7 @@ const styles = theme => ({
       fontWeight: "700",
       fontSize: "150%",
       fontFamily: "Rubik, sans-serif",
+      marginRight: "950px"
     },
     navbar: {
         boxShadow: "5px 5px 8px #888888",

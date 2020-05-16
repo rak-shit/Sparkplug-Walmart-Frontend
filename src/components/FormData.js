@@ -6,9 +6,14 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import SendIcon from '@material-ui/icons/Send';
-import thunder from '../svgs/observation.png'
-import Lottie from 'react-lottie'
+import Lottie from 'react-lottie';
+import InputLabel from '@material-ui/core/InputLabel';
 import animationData from '../lotties/18143-discord-nearby-animation.json';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import yearData from '../data/yearData';
+import countryData from '../data/countryData';
+import itemData from '../data/itemData';
 
 
 const styles = theme => ({
@@ -57,33 +62,66 @@ class FormData extends Component {
                     style={{marginTop: "140px"}}
                 />
                 <form className={classes.root}>
-                    <TextField
-                        onChange={this.props.onChange}
-                        id="outlined-secondary"
-                        label="Search Item"
-                        variant="outlined"
-                        color="primary"
-                        name="item"
-                        className={classes.text}
-                    />
-                    <TextField
-                        onChange={this.props.onChange}
-                        id="outlined-secondary"
-                        label="Location"
-                        variant="outlined"
-                        color="primary"
-                        name="country"
-                        className={classes.text}
-                    />
-                    <TextField
-                        onChange={this.props.onChange}
-                        id="outlined-secondary"
-                        label="Comparing Year"
-                        variant="outlined"
-                        color="primary"
-                        name="year"
-                        className={classes.text}
-                    />
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Select Item</InputLabel>
+                        <Select
+                            native
+                            onChange={this.props.onChange}
+                            label="Select Item"
+                            inputProps={{
+                                name: 'item',
+                                id: 'outlined-age-native-simple',
+                            }}
+                            className={classes.text}
+                        >
+                            <option aria-label="None" value="" />
+                            {itemData.items.map(item => {
+                                return (
+                                    <option value={item}>{item}</option>
+                                )
+                            })}
+                        </Select>
+                    </FormControl>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Location</InputLabel>
+                        <Select
+                            native
+                            onChange={this.props.onChange}
+                            label="Location"
+                            inputProps={{
+                                name: 'country',
+                                id: 'outlined-age-native-simple',
+                            }}
+                            className={classes.text}
+                        >
+                            <option aria-label="None" value="" />
+                            {countryData.country.map(country => {
+                                return (
+                                    <option value={country}>{country}</option>
+                                )
+                            })}
+                        </Select>
+                    </FormControl>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Comparing Year</InputLabel>
+                        <Select
+                            native
+                            onChange={this.props.onChange}
+                            label="Comparing Year"
+                            inputProps={{
+                                name: 'year',
+                                id: 'outlined-age-native-simple',
+                            }}
+                            className={classes.text}
+                        >
+                            <option aria-label="None" value="" />
+                            {yearData.year.map(year => {
+                                return (
+                                    <option value={year}>{year}</option>
+                                )
+                            })}
+                        </Select>
+                    </FormControl>
                 </form>
                 <Button
                     onClick={this.props.onClick}

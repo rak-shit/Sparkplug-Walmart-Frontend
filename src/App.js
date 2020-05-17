@@ -36,7 +36,8 @@ export class App extends Component {
     event.preventDefault()
     this.setState({ 
       loader: true,
-      submit: false 
+      submit: false,
+      no_data: false
     })
     axios.get(`http://localhost:5000/monitor/${this.state.item}/${this.state.year}/${this.state.country}`).then((response) => {
       const count = Object.keys(response.data).length
@@ -65,7 +66,8 @@ export class App extends Component {
           submit: true,
           loader: false,
           outliers: outliers,
-          avg_rate_change: avg_rate_change
+          avg_rate_change: avg_rate_change,
+          no_data: false
         })
       } else {
         this.setState({

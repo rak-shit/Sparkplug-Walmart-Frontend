@@ -14,7 +14,8 @@ import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Lottie from 'react-lottie'
-import animationData from '../lotties/18914-sand-clock-loader-animation.json'
+import animationData from '../lotties/18914-sand-clock-loader-animation.json';
+import notFound from '../lotties/dataNotfound.json';
 
 
 const axios = require('axios');
@@ -45,6 +46,9 @@ class Charts extends Component {
         const defaultOptions = {
             animationData: animationData
         }
+        const notFoundOptions = {
+            animationData: notFound
+        }
         const data = [
             { x: this.props.item, y: this.props.avg_rate_change }
         ]
@@ -60,6 +64,18 @@ class Charts extends Component {
                                 className="lottie-file"
                             />
                         </div>    
+                    </>
+                    : null
+                }
+                {this.props.no_data ? 
+                    <>
+                        <div className="not-found">
+                            <Lottie options={notFoundOptions}
+                                height={200}
+                                width={200}
+                                className="lottie-file"
+                            />
+                        </div>
                     </>
                     : null
                 }
